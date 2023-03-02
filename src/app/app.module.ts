@@ -6,16 +6,22 @@ import { AppComponent } from './app.component';
 import { SaludoComponent } from './components/saludo/saludo.component';
 import {ListModuleModule} from './modules/lists/list-module.module';
 import { ListaContactosComponent } from './components/lista-contactos/lista-contactos.component'
+import {HttpClientModule}  from '@angular/common/http';
+import { LoginFormComponent } from './components/fomrs/login-form/login-form.component'
 @NgModule({
   declarations: [
     AppComponent,
     SaludoComponent,
-    ListaContactosComponent
+    ListaContactosComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ListModuleModule
+    // Importamos nuestro modulo personalizado
+    ListModuleModule,
+    // Importamos el modulo HttpClientModule para hacer peticiones HTTP
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
