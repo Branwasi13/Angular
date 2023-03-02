@@ -1,0 +1,13 @@
+<h1>Hola, {{nombre}}</h1>
+
+<h3 [ngClass]="nombre == 'Anonimo' ? 'anonimo' : 'saludo'" id="usuario" [innerText]="nombre">
+    <!-- No indicamos nada en la etiquetas y el valor viene definidopor la propiedad -->
+</h3>
+
+<p [ngStyle]="myStyle">estilos hechos en TypeScript</p>
+
+<button id="emit-alerta" (click)="enviarMensajeAlPadre()">Enviar mensaje al componente padre</button>
+
+<!-- hacer uso del componente lista basica del modulo listas -->
+
+<app-lista-basica></app-lista-basica>

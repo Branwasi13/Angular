@@ -1,0 +1,69 @@
+<p [ngStyle]="{color: 'red', fontWeight:'bolder'}">Lista de elementos:</p>
+
+<p ngClass="underline">Aqui vamos a iterar sobre una lista y motrar varios elementos</p>
+
+<p [ngClass]="['small', 'underli']">Texto con estilo</p>
+
+<p [ngClass]="{underline:false, small:true}">Texto con estilo con classes dinamicas con booleanos</p>
+
+<!-- BLOQUE DE DIRECTIVAS ESTRUCTURALES -->
+
+
+<button (click)="cambiarCargando()">{{cargando? 'Terminar Carga': 'iniciar carga'}}</button>
+
+<p *ngIf="cargando"> Cargando....</p>
+
+<ng-container *ngIf="!cargando; else templateEspera" >
+    <p>Todo listo</p>
+</ng-container>
+
+<ng-template #templateEspera> 
+    <p>espere hasta que termine el proceso</p>
+</ng-template>
+
+
+<!-- Bloque para elñ uso el NGFOR -->
+<!-- iteramos en la lista de productos -->
+<h3>products</h3>
+<div *ngFor="let producto of listaElementos let i = index; let even = even">
+    <div [ngStyle]="even?{color:'tomato', backgroundColor:'purple'}:{backgroundColor:'grey'}">
+        <p>ID: {{i+1}}</p>    
+        <p>{{producto.nombre}} - {{producto.precio}}</p>
+        <p>description {{producto.description}}</p>
+    </div>
+</div>
+
+<!-- Bloque para entender ngSwitch -->
+
+<div [ngSwitch]="opcion">
+    <p [id]="1" *ngSwitchCase="1">has elegido la opcion 1</p>
+    <p [id]="2" *ngSwitchCase="2">has elegido la opcion 2</p>
+    <p [id]="3" *ngSwitchCase="3">has elegido la opcion 3</p>
+    <p [id]="4" *ngSwitchCase="4">has elegido la opcion 4</p>
+    <p *ngSwitchDefault class="cerrar"></p>
+</div>
+
+<div>
+    <input type="radio" name="opcion" (click)="escogerOpcion(1)"> opcion 1
+
+    <input type="radio" name="opcion" (click)="escogerOpcion(2)"> opcion 2
+
+    <input type="radio" name="opcion" (click)="escogerOpcion(3)"> opcion 3
+
+    <input type="radio" name="opcion" (click)="escogerOpcion(4)"> opcion 4
+
+    <input type="radio" selected="selected" name="opcion" (click)="escogerOpcion(0)"> ocultar
+</div>
+
+
+
+<p>Productos de menos de 14 dolares</p>
+<!-- podemos concatenar -->
+<div *ngFor="let producto of listaElementos let i = index; let even = even">
+    <!-- se evalua la condicion a la hora de pinhtar el div -->
+    <div *ngIf="producto.precio < 14" [ngStyle]="even?{color:'tomato', backgroundColor:'purple'}:{backgroundColor:'grey'}">
+        <p>ID: {{i+1}}</p>    
+        <p>{{producto.nombre}} - {{producto.precio}}</p>
+        <p>description {{producto.description}}</p>
+    </div>
+</div>
